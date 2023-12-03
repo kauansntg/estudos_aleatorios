@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css" media="screen" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+
+<body>
+
+    <label for="operando1">Operando 1:</label>
+    <input type="number" id="operando1" onkeypress="pular()"><br>
+
+    <label for="operando2">Operando 2:</label>
+    <input type="number" id="operando2" onkeypress="pular()"><br>
+
+    <select id="operacao">
+        <option value="soma">Soma + </option>
+        <option value="subtracao">Subtração - </option>
+        <option value="multiplicacao">Multiplicação *  </option>
+        <option value="divisao">Divisão % </option>
+    </select><br>
+
+    <button>Calcular</button><br>
+
+    <div id="resultado"></div>
+
+    <script>
+        function pulaLinha() {
+            document.write("<br>");
+        }
+
+        function mostra(frase) {
+            document.write(frase);
+            pulaLinha();
+        }
+        var input = document.querySelector("input");
+        input.focus();
+
+        function calcular() {
+            var operando1 = parseFloat(document.getElementById("operando1").value);
+            var operando2 = parseFloat(document.getElementById("operando2").value);
+            var operacao = document.getElementById("operacao").value;
+            var resultado = 0;
+
+            switch (operacao) {
+                case "soma":
+                    resultado = operando1 + operando2;
+                    break;
+                case "subtracao":
+                    resultado = operando1 - operando2;
+                    break;
+                case "multiplicacao":
+                    resultado = operando1 * operando2;
+                    break;
+                case "divisao":
+                    resultado = operando1 / operando2;
+                    break;
+                default:
+                    mostra("Operação inválida");
+                    break;
+            }
+
+            mostra("Resultado: " + resultado);
+        }
+
+        var button = document.querySelector("button");
+        button.onclick = calcular;
+
+        function pular() {
+            if (event.keyCode == 13) {
+                document.getElementById("operando2").focus();
+            }
+        }
+    </script>
+</body>
+</html>
